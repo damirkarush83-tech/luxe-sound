@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>LUXE SOUND | Ярославль</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #111;
+            line-height: 1.4;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        /* header */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #000, #2c2c2c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            cursor: pointer;
+        }
+        .logo span {
+            background: linear-gradient(135deg, #c7a03b, #e09d32);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        .city {
+            font-weight: 500;
+            font-size: 0.9rem;
+            background: #f5f5f5;
+            padding: 8px 18px;
+            border-radius: 100px;
+        }
+        .city i { color: #c7a03b; margin-right: 6px; }
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .support-btn, .tg-link {
+            background: #111;
+            color: white;
+            padding: 8px 22px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+        }
+        .support-btn:hover, .tg-link:hover {
+            background: #c7a03b;
+            transform: scale(0.96);
+        }
+        /* titles */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 56px 0 32px 0;
+            letter-spacing: -0.3px;
+            border-left: 5px solid #c7a03b;
+            padding-left: 24px;
+        }
+        /* product grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 70px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 32px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 35px 45px -20px rgba(0,0,0,0.15);
+            border-color: #e0e0e0;
+        }
+        .card-img {
+            background: #fafaf8;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 4.8rem;
+        }
+        .card-body {
+            padding: 20px 24px 32px;
+        }
+        .card-title {
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            cursor: pointer;
+            display: inline-block;
+            transition: color 0.2s;
+        }
+        .card-title:hover { color: #c7a03b; }
+        .card-desc {
+            color: #5a5a5a;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+        .rating-stars {
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: #f5b042;
+            letter-spacing: 2px;
+        }
+        .rating-stars span {
+            color: #777;
+            margin-left: 8px;
+            font-size: 0.8rem;
+        }
+        .price-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .btn-order {
+            background: #000;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-order:hover { background: #c7a03b; transform: scale(0.98); }
+        /* страницы */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .back-home {
+            display: inline-block;
+            margin: 20px 0 32px 0;
+            background: #f0f0f0;
+            padding: 10px 28px;
+            border-radius: 60px;
+            text-decoration: none;
+            color: #111;
+            font-weight: 500;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .back-home:hover { background: #c7a03b; color: white; }
+        /* product page luxe */
+        .product-gallery {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .product-gallery img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 28px;
+            border: 1px solid #eaeaea;
+            transition: 0.2s;
+        }
+        .product-specs {
+            background: #faf9f6;
+            padding: 32px;
+            border-radius: 36px;
+            margin: 30px 0;
+        }
+        .reviews-list {
+            margin: 30px 0;
+            max-height: 450px;
+            overflow-y: auto;
+        }
+        .review-item {
+            background: #fff;
+            border-radius: 28px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ececec;
+        }
+        .review-photo {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 20px;
+            margin-top: 12px;
+        }
+        /* форма */
+        input, select, textarea {
+            font-family: 'Inter', sans-serif;
+            width: 100%;
+            padding: 14px 18px;
+            margin-bottom: 16px;
+            border-radius: 60px;
+            border: 1px solid #ddd;
+            outline: none;
+        }
+        textarea { border-radius: 28px; }
+        input:focus, select:focus, textarea:focus { border-color: #c7a03b; }
+        /* поддержка */
+        .ai-chat-full {
+            background: #faf9f6;
+            border-radius: 36px;
+            padding: 28px;
+            margin-top: 30px;
+        }
+        .chat-messages-full {
+            height: 400px;
+            overflow-y: auto;
+            background: white;
+            border-radius: 28px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ececec;
+        }
+        .message { margin-bottom: 16px; }
+        .user-message { text-align: right; color: #111; font-weight: 500; }
+        .bot-message { text-align: left; color: #c7a03b; }
+        /* плавающий ИИ */
+        .floating-ai {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+        }
+        .ai-chat-btn {
+            background: #111;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            padding: 14px 26px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .ai-chat-window {
+            display: none;
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 340px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.15);
+            overflow: hidden;
+            flex-direction: column;
+        }
+        .ai-chat-header {
+            background: #111;
+            color: white;
+            padding: 14px 18px;
+            font-weight: 600;
+        }
+        .ai-chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 16px;
+            background: #fff;
+        }
+        .ai-chat-input {
+            display: flex;
+            border-top: 1px solid #efefef;
+        }
+        .ai-chat-input input {
+            flex: 1;
+            border: none;
+            padding: 14px;
+            border-radius: 0;
+        }
+        .ai-chat-input button {
+            background: #c7a03b;
+            border: none;
+            padding: 0 20px;
+            color: white;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            padding: 48px 0 40px;
+            border-top: 1px solid #ececec;
+            color: #6c6c6c;
+        }
+        @media (max-width: 700px) {
+            .container { padding: 0 20px; }
+            .section-title { font-size: 1.6rem; margin-top: 32px; }
+            .card-title { font-size: 1.3rem; }
+            .price { font-size: 1.5rem; }
+            .header-flex { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container header-flex">
+        <div class="logo" id="homeLogo">LUXE<span>SOUND</span></div>
+        <div class="city"><i class="fas fa-map-marker-alt"></i> Ярославль</div>
+        <div class="header-actions">
+            <button class="support-btn" id="supportPageBtn"><i class="fas fa-headset"></i> Поддержка</button>
+            <a href="https://t.me/yummyniam" target="_blank" class="tg-link"><i class="fab fa-telegram"></i> Telegram</a>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <!-- HOME -->
+    <div id="homePage" class="page active">
+        <h2 class="section-title"><i class="fas fa-headphones"></i> Наушники</h2>
+        <div class="products-grid" id="headphones-grid"></div>
+        <h2 class="section-title"><i class="fas fa-clock"></i> Смарт-часы</h2>
+        <div class="products-grid" id="watches-grid"></div>
+        <h2 class="section-title"><i class="fas fa-bolt"></i> Гаджеты & колонки</h2>
+        <div class="products-grid" id="gadgets-grid"></div>
+    </div>
+
+    <!-- PRODUCT PAGE (dynamic) -->
+    <div id="productPage" class="page"></div>
+
+    <!-- SUPPORT PAGE -->
+    <div id="supportPage" class="page">
+        <button class="back-home" id="backFromSupport">← На главную</button>
+        <h1 style="font-weight: 600;">Техподдержка и консьерж-сервис</h1>
+        <div class="ai-chat-full">
+            <div class="chat-messages-full" id="supportChatMessages">
+                <div class="message bot-message">Здравствуйте! Я персональный ассистент. Помогу подобрать технику, отвечу на вопросы, приму жалобу. Напишите, что вас интересует.</div>
+            </div>
+            <div class="chat-input-full" style="display: flex; gap: 12px;">
+                <input type="text" id="supportChatInput" placeholder="Ваше сообщение..." style="margin-bottom: 0;">
+                <button class="btn-order" id="sendSupportChat">Отправить</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>📍 Ярославль | Премиальная электроника | Доставка по городу</p>
+    <p style="margin-top: 12px;">📱 Telegram @yummyniam — ответим в течение 15 минут</p>
+</footer>
+
+<script>
+    // ---------- ТОВАРЫ LUXE ----------
+    const productsData = {
+        headphones: [
+            { id: 1, name: "Sony WH-1000XM5", desc: "Флагман, адаптивное шумоподавление", price: 42990, icon: "🎧", 
+              fullDesc: "Лучшие беспроводные наушники с премиум-отделкой. 30 часов работы, LDAC, быстрая зарядка.", 
+              specs: "Вес 250г, Bluetooth 5.2, 4 микрофона", 
+              images: ["https://picsum.photos/id/1/200/200", "https://picsum.photos/id/20/200/200"] },
+            { id: 2, name: "AirPods Max", desc: "Алюминий, пространственное аудио", price: 78990, icon: "🎧",
+              fullDesc: "Apple премиум-класса, активное шумоподавление, режим прозрачности.", 
+              specs: "Чип H1, 20 часов, Smart Case", 
+              images: ["https://picsum.photos/id/2/200/200", "https://picsum.photos/id/22/200/200"] },
+            { id: 3, name: "B&O Beoplay H95", desc: "Кожа, титан, ручная сборка", price: 129990, icon: "🎵",
+              fullDesc: "Эксклюзивный дизайн, драйверы из неодима, 38 часов.", 
+              specs: "Акустика высокого разрешения, кейс из кожи", 
+              images: ["https://picsum.photos/id/3/200/200"] },
+            { id: 4, name: "B&W Px8", desc: "Британский звук, 24 бит", price: 89990, icon: "🔊",
+              fullDesc: "Карбоновые драйверы, aptX Adaptive, дизайн из кожи.", 
+              specs: "40 мм динамики, 30 часов", 
+              images: ["https://picsum.photos/id/4/200/200"] }
+        ],
+        watches: [
+            { id: 5, name: "Apple Watch Ultra 2", desc: "Титан, 49 мм, 3000 нит", price: 99990, icon: "⌚",
+              fullDesc: "Для экстремалов, GPS + Cellular, до 36 часов.", 
+              specs: "Сапфировое стекло, водозащита 100м", 
+              images: ["https://picsum.photos/id/5/200/200"] },
+            { id: 6, name: "Garmin Fenix 7X", desc: "Солнечная зарядка, карты", price: 104990, icon: "⌚",
+              fullDesc: "Мультиспорт, топографические карты, 28 дней.", 
+              specs: "Сапфир, 51мм", 
+              images: ["https://picsum.photos/id/6/200/200"] },
+            { id: 7, name: "Samsung Watch6 Classic", desc: "Вращающийся безель", price: 49990, icon: "⌚",
+              fullDesc: "Super AMOLED, контроль здоровья, элегантная сталь.", 
+              specs: "47 мм, 2 дня работы", 
+              images: ["https://picsum.photos/id/7/200/200"] },
+            { id: 8, name: "TAG Heuer Connected", desc: "Швейцарские смарт-часы", price: 199990, icon: "⌚",
+              fullDesc: "Спортивный дизайн, премиум материалы.", 
+              specs: "Водозащита 50м", 
+              images: ["https://picsum.photos/id/8/200/200"] }
+        ],
+        gadgets: [
+            { id: 9, name: "B&O Beosound A1", desc: "Колонка 360°, 18ч", price: 29990, icon: "🔈",
+              fullDesc: "Алюминий, 360° звук, IP67.", 
+              specs: "Вес 0.6 кг, Bluetooth 5.1", 
+              images: ["https://picsum.photos/id/9/200/200"] },
+            { id: 10, name: "Marshall Middleton", desc: "Мощный бас, ретро", price: 24990, icon: "🔊",
+              fullDesc: "Портативная, 20+ часов, зарядка power bank.", 
+              specs: "Драйверы 3 дюйма", 
+              images: ["https://picsum.photos/id/10/200/200"] },
+            { id: 11, name: "Shure MV7", desc: "Подкастовый микрофон", price: 25990, icon: "🎙️",
+              fullDesc: "USB/XLR, профессиональный.", 
+              specs: "Частотная характеристика 50–16k", 
+              images: ["https://picsum.photos/id/11/200/200"] },
+            { id: 12, name: "DJI Osmo Mobile 6", desc: "Стабилизатор для iPhone", price: 15990, icon: "📱",
+              fullDesc: "Складной, магнитный зажим.", 
+              specs: "Время работы 6.5 ч", 
+              images: ["https://picsum.photos/id/12/200/200"] }
+        ]
+    };
+    const allProducts = [...productsData.headphones, ...productsData.watches, ...productsData.gadgets];
+
+    // localStorage
+    if (!localStorage.getItem('reviews')) localStorage.setItem('reviews', JSON.stringify({}));
+    if (!localStorage.getItem('complaints')) localStorage.setItem('complaints', JSON.stringify([]));
+
+    function getProductReviews(productId) {
+        return JSON.parse(localStorage.getItem('reviews'))[productId] || [];
+    }
+    function saveReview(productId, review) {
+        let rev = JSON.parse(localStorage.getItem('reviews'));
+        if (!rev[productId]) rev[productId] = [];
+        rev[productId].push(review);
+        localStorage.setItem('reviews', JSON.stringify(rev));
+    }
+    function saveComplaint(complaint) {
+        let comp = JSON.parse(localStorage.getItem('complaints'));
+        comp.push(complaint);
+        localStorage.setItem('complaints', JSON.stringify(comp));
+        alert("Жалоба отправлена администратору.");
+    }
+
+    function renderStars(rating) {
+        let full = Math.floor(rating);
+        let half = rating % 1 >= 0.5;
+        let stars = '';
+        for (let i=0; i<full; i++) stars += '★';
+        if (half) stars += '½';
+        for (let i=stars.length; i<5; i++) stars += '☆';
+        return stars;
+    }
+
+    function getAverageRating(productId) {
+        let reviews = getProductReviews(productId);
+        if (!reviews.length) return 0;
+        let sum = reviews.reduce((a,b)=> a + b.rating, 0);
+        return sum / reviews.length;
+    }
+
+    // карточка
+    function createCard(product) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        const avg = getAverageRating(product.id);
+        const revCount = getProductReviews(product.id).length;
+        card.innerHTML = `
+            <div class="card-img">${product.icon}</div>
+            <div class="card-body">
+                <div class="card-title" data-id="${product.id}">${product.name}</div>
+                <div class="card-desc">${product.desc}</div>
+                <div class="rating-stars">${renderStars(avg)} <span>(${revCount} отзывов)</span></div>
+                <div class="price-block">
+                    <div class="price">${product.price.toLocaleString()} ₽</div>
+                    <button class="btn-order" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}"><i class="fas fa-shopping-bag"></i> Купить</button>
+                </div>
+            </div>
+        `;
+        const title = card.querySelector('.card-title');
+        title.addEventListener('click', () => openProductPage(product.id));
+        const btn = card.querySelector('.btn-order');
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentOrderProduct = product;
+            openOrderModal(product.name);
+        });
+        return card;
+    }
+
+    function renderHome() {
+        const h = document.getElementById('headphones-grid');
+        const w = document.getElementById('watches-grid');
+        const g = document.getElementById('gadgets-grid');
+        h.innerHTML = ''; w.innerHTML = ''; g.innerHTML = '';
+        productsData.headphones.forEach(p => h.appendChild(createCard(p)));
+        productsData.watches.forEach(p => w.appendChild(createCard(p)));
+        productsData.gadgets.forEach(p => g.appendChild(createCard(p)));
+    }
+
+    // отдельная страница товара
+    let currentProductId = null;
+    function openProductPage(productId) {
+        const product = allProducts.find(p => p.id === productId);
+        currentProductId = productId;
+        const home = document.getElementById('homePage');
+        const prodPage = document.getElementById('productPage');
+        const support = document.getElementById('supportPage');
+        home.classList.remove('active');
+        support.classList.remove('active');
+        prodPage.classList.add('active');
+        const avg = getAverageRating(product.id);
+        const reviews = getProductReviews(product.id);
+        let reviewsHtml = '';
+        reviews.forEach(r => {
+            reviewsHtml += `
+                <div class="review-item">
+                    <div class="rating-stars">${renderStars(r.rating)}</div>
+                    <strong>${r.name}</strong>
+                    <p>${r.text}</p>
+                    ${r.photo ? `<img src="${r.photo}" class="review-photo" alt="фото">` : ''}
+                </div>
+            `;
+        });
+        prodPage.innerHTML = `
+            <button class="back-home" id="backFromProduct">← Все товары</button>
+            <h1 style="font-weight: 600;">${product.name}</h1>
+            <div class="product-gallery">
+                ${product.images.map(img => `<img src="${img}" alt="img">`).join('')}
+            </div>
+            <div class="product-specs">
+                <h3>Характеристики</h3>
+                <p>${product.specs}</p>
+                <h3>Описание</h3>
+                <p>${product.fullDesc}</p>
+                <div style="margin: 20px 0;"><span class="price">${product.price.toLocaleString()} ₽</span></div>
+                <button class="btn-order" id="orderFromProduct"><i class="fas fa-shopping-bag"></i> Заказать</button>
+            </div>
+            <h3>Отзывы покупателей (${reviews.length})</h3>
+            <div class="reviews-list" id="productReviewsList">${reviewsHtml || '<p>Пока нет отзывов. Напишите первым!</p>'}</div>
+            <div style="background: #faf9f6; padding: 28px; border-radius: 36px;">
+                <h3>Оставить отзыв с фото</h3>
+                <form id="addReviewForm">
+                    <input type="text" id="reviewName" placeholder="Ваше имя" required>
+                    <select id="reviewRating">
+                        <option value="5">★★★★★</option><option value="4">★★★★☆</option><option value="3">★★★☆☆</option>
+                        <option value="2">★★☆☆☆</option><option value="1">★☆☆☆☆</option>
+                    </select>
+                    <textarea id="reviewText" placeholder="Поделитесь впечатлениями" rows="3" required></textarea>
+                    <input type="file" id="reviewPhoto" accept="image/*">
+                    <button type="submit" class="btn-order" style="margin-top: 10px;">Опубликовать отзыв</button>
+                </form>
+            </div>
+            <div style="margin: 30px 0; background: #fff3f0; padding: 28px; border-radius: 36px;">
+                <h3>Пожаловаться на товар</h3>
+                <form id="complaintForm">
+                    <textarea id="complaintText" placeholder="Опишите проблему" rows="2" required></textarea>
+                    <button type="submit" class="btn-order" style="background:#b33;">Отправить жалобу</button>
+                </form>
+            </div>
+        `;
+        document.getElementById('backFromProduct').onclick = () => {
+            prodPage.classList.remove('active');
+            home.classList.add('active');
+        };
+        document.getElementById('orderFromProduct').onclick = () => {
+            currentOrderProduct = product;
+            openOrderModal(product.name);
+        };
+        document.getElementById('addReviewForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('reviewName').value;
+            const rating = parseInt(document.getElementById('reviewRating').value);
+            const text = document.getElementById('reviewText').value;
+            const file = document.getElementById('reviewPhoto').files[0];
+            if (!name || !text) { alert("Заполните имя и отзыв"); return; }
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = ev => {
+                    saveReview(product.id, { name, rating, text, photo: ev.target.result });
+                    alert('Отзыв добавлен');
+                    openProductPage(product.id);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                saveReview(product.id, { name, rating, text, photo: null });
+                alert('Отзыв добавлен');
+                openProductPage(product.id);
+            }
+        });
+        document.getElementById('complaintForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = document.getElementById('complaintText').value;
+            if (!text) return;
+            saveComplaint({ productId: product.id, productName: product.name, text, date: new Date() });
+            document.getElementById('complaintText').value = '';
+        });
+    }
+
+    // модалка заказа
+    let currentOrderProduct = null;
+    const orderModal = document.createElement('div');
+    orderModal.style.position = 'fixed';
+    orderModal.style.top = '0'; orderModal.style.left = '0';
+    orderModal.style.width = '100%'; orderModal.style.height = '100%';
+    orderModal.style.backgroundColor = 'rgba(0,0,0,0.75)';
+    orderModal.style.display = 'none';
+    orderModal.style.justifyContent = 'center';
+    orderModal.style.alignItems = 'center';
+    orderModal.style.zIndex = '2000';
+    orderModal.innerHTML = `
+        <div style="background:#fff; max-width:480px; width:90%; border-radius:48px; padding:32px;">
+            <span id="closeOrderModal" style="float:right; font-size:28px; cursor:pointer;">&times;</span>
+            <h3>Оформление заказа</h3>
+            <p><strong id="modalProductName"></strong></p>
+            <form id="orderForm">
+                <input type="text" id="userName" placeholder="Ваше имя" required>
+                <input type="tel" id="userPhone" placeholder="Телефон (Telegram/WhatsApp)" required>
+                <textarea id="userComment" rows="2" placeholder="Пожелания по доставке"></textarea>
+                <button type="submit" class="btn-order" style="width:100%">Отправить заказ в Telegram</button>
+            </form>
+        </div>
+    `;
+    document.body.appendChild(orderModal);
+    document.getElementById('closeOrderModal').onclick = () => orderModal.style.display = 'none';
+    function openOrderModal(productName) {
+        document.getElementById('modalProductName').innerText = productName;
+        orderModal.style.display = 'flex';
+        document.getElementById('orderForm').reset();
+    }
+    document.getElementById('orderForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('userName').value;
+        const phone = document.getElementById('userPhone').value;
+        const comment = document.getElementById('userComment').value;
+        let msg = `🛒 LUXE ЗАКАЗ (Ярославль)%0AТовар: ${currentOrderProduct.name}%0AЦена: ${currentOrderProduct.price}₽%0AИмя: ${name}%0AТелефон: ${phone}%0AКоммент: ${comment}`;
+        window.open(`https://t.me/yummyniam?text=${msg}`, '_blank');
+        orderModal.style.display = 'none';
+        alert('Заказ отправлен продавцу. Ответим в Telegram @yummyniam');
+    });
+
+    // поддержка страница + ИИ
+    function showSupportPage() {
+        document.getElementById('homePage').classList.remove('active');
+        document.getElementById('productPage').classList.remove('active');
+        document.getElementById('supportPage').classList.add('active');
+    }
+    document.getElementById('supportPageBtn').onclick = showSupportPage;
+    document.getElementById('backFromSupport').onclick = () => {
+        document.getElementById('supportPage').classList.remove('active');
+        document.getElementById('homePage').classList.add('active');
+    };
+    document.getElementById('homeLogo').onclick = () => {
+        document.getElementById('productPage').classList.remove('active');
+        document.getElementById('supportPage').classList.remove('active');
+        document.getElementById('homePage').classList.add('active');
+    };
+
+    // ИИ на странице поддержки
+    const supportChatMessages = document.getElementById('supportChatMessages');
+    const supportChatInput = document.getElementById('supportChatInput');
+    const sendSupportChat = document.getElementById('sendSupportChat');
+    function botAnswerFull(msg) {
+        const lower = msg.toLowerCase();
+        if (lower.includes('наушник')) return 'Из премиум-линейки советуем Sony WH-1000XM5 или AirPods Max. Можем привезти на примерку.';
+        if (lower.includes('часы')) return 'Apple Watch Ultra 2 и Garmin Fenix 7X — бестселлеры. Подберем по стилю.';
+        if (lower.includes('колонк')) return 'B&O Beosound A1 даёт объёмный звук, а Marshall Middleton — мощные басы.';
+        if (lower.includes('бюджет')) return 'У нас цены от 15 000 до 200 000 ₽. Напишите сумму — я подберу идеальный вариант.';
+        if (lower.includes('жалоб')) return 'Пришлите жалобу текстом, я передам руководству. Либо напишите в Telegram @yummyniam.';
+        return 'Я ассистент LUXE SOUND. Уточните, что именно: наушники, часы, колонка или доставка по Ярославлю?';
+    }
+    function addSupportMessage(role, text) {
+        const div = document.createElement('div');
+        div.className = `message ${role === 'user' ? 'user-message' : 'bot-message'}`;
+        div.innerText = text;
+        supportChatMessages.appendChild(div);
+        supportChatMessages.scrollTop = supportChatMessages.scrollHeight;
+    }
+    sendSupportChat.onclick = () => {
+        const text = supportChatInput.value.trim();
+        if (!text) return;
+        addSupportMessage('user', text);
+        supportChatInput.value = '';
+        setTimeout(() => addSupportMessage('bot', botAnswerFull(text)), 200);
+    };
+    supportChatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendSupportChat.click(); });
+
+    // плавающий ИИ на главной
+    const floatingAI = document.createElement('div');
+    floatingAI.className = 'floating-ai';
+    floatingAI.innerHTML = `
+        <button class="ai-chat-btn" id="floatingAiBtn"><i class="fas fa-robot"></i> AI-консьерж</button>
+        <div class="ai-chat-window" id="floatingAiWindow">
+            <div class="ai-chat-header">🤖 Персональный ассистент</div>
+            <div class="ai-chat-messages" id="floatChatMessages"></div>
+            <div class="ai-chat-input">
+                <input type="text" id="floatChatInput" placeholder="Спросите о товарах...">
+                <button id="floatSendBtn">➤</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(floatingAI);
+    const floatBtn = document.getElementById('floatingAiBtn');
+    const floatWindow = document.getElementById('floatingAiWindow');
+    const floatMessages = document.getElementById('floatChatMessages');
+    const floatInput = document.getElementById('floatChatInput');
+    const floatSend = document.getElementById('floatSendBtn');
+    floatBtn.onclick = () => {
+        floatWindow.style.display = floatWindow.style.display === 'flex' ? 'none' : 'flex';
+    };
+    function addFloatMessage(role, text) {
+        const d = document.createElement('div');
+        d.className = `message ${role === 'user' ? 'user-message' : 'bot-message'}`;
+        d.innerText = text;
+        floatMessages.appendChild(d);
+        floatMessages.scrollTop = floatMessages.scrollHeight;
+    }
+    function aiResponseFloat(msg) {
+        const l = msg.toLowerCase();
+        if (l.includes('наушник')) return 'Рекомендую Sony WH-1000XM5 (43 990₽) или AirPods Max (78 990₽).';
+        if (l.includes('часы')) return 'Apple Watch Ultra 2 и Garmin Fenix 7X — топ продаж.';
+        if (l.includes('колонк')) return 'B&O Beosound A1 — идеальный вариант для дома и улицы.';
+        if (l.includes('бюджет')) return 'У нас есть варианты от 15 000₽ до 200 000₽.';
+        return 'Напишите “наушники”, “часы” или “колонка” — я помогу с выбором.';
+    }
+    floatSend.onclick = () => {
+        const text = floatInput.value.trim();
+        if (!text) return;
+        addFloatMessage('user', text);
+        floatInput.value = '';
+        setTimeout(() => addFloatMessage('bot', aiResponseFloat(text)), 200);
+    };
+    floatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') floatSend.click(); });
+    addFloatMessage('bot', 'Здравствуйте! Я ИИ-консьерж. Какой товар ищете?');
+
+    renderHome();
+</script>
+</body>
+</html>
